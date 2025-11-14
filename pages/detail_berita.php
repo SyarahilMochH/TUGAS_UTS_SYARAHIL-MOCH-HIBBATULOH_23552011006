@@ -1,3 +1,6 @@
+<?php include '../includes/header.php'; ?>
+<?php include '../includes/navbar.php'; ?>
+
 <div class="container py-5">
   <?php
   $berita = [
@@ -29,16 +32,18 @@
   if ($id && isset($berita[$id])) {
     $b = $berita[$id];
     echo "
-    <div class='text-center mb-4'>
-      <h2 class='fw-bold text-success'>{$b['judul']}</h2>
-      <small class='text-muted'>{$b['tanggal']}</small>
+    <div class='card shadow-lg border-0 p-4'>
+      <h2 class='fw-bold text-success mb-2'>{$b['judul']}</h2>
+      <small class='text-muted mb-3 d-block'>{$b['tanggal']}</small>
+      <img src='{$b['gambar']}' class='img-fluid rounded mb-4' alt='{$b['judul']}' style='max-height:400px; object-fit:cover;'>
+      <p class='lead text-justify'>{$b['isi']}</p>
+      <a href='/TUGAS_UTS_SYARAHIL%20MOCH%20HIBBATULOH_23552011006/index.php?page=berita' class='btn btn-success mt-3'>← Kembali ke Daftar Berita</a>
     </div>
-    <img src='{$b['gambar']}' class='img-fluid rounded shadow mb-4 d-block mx-auto' alt='{$b['judul']}' style='max-height:400px; object-fit:cover;'>
-    <p class='lead text-justify'>{$b['isi']}</p>
-    <a href='berita.php' class='btn btn-success mt-3'>← Kembali ke Daftar Berita</a>
     ";
   } else {
-    echo "<p class='text-danger text-center'>Berita tidak ditemukan.</p>";
+    echo "<div class='alert alert-danger text-center'>Berita tidak ditemukan.</div>";
   }
   ?>
 </div>
+
+<?php include '../includes/footer.php'; ?>

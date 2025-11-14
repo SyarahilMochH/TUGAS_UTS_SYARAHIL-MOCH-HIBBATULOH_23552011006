@@ -1,21 +1,29 @@
-<?php
-include('includes/header.php');
-include('includes/navbar.php');
+<!DOCTYPE html>
+<html lang="id">
+<?php include 'includes/header.php'; ?>
+<body class="d-flex flex-column min-vh-100">
 
-$page = isset($_GET['page']) ? $_GET['page'] : 'home';
-$page_path = 'pages/' . $page . '.php';
+  <?php include 'includes/navbar.php'; ?>
 
-echo '<main class="flex-fill">';
-if (file_exists($page_path)) {
-    include($page_path);
-} else {
-    include('pages/home.php');
-}
-echo '</main>';
+  <main class="flex-fill">
+    <?php
+    $page = isset($_GET['page']) ? $_GET['page'] : 'home';
+    $page_path = "pages/{$page}.php";
 
-include('includes/footer.php');
-?>
-<!-- Chat Assistant -->
+    if (file_exists($page_path)) {
+      include($page_path);
+    } else {
+      include("pages/home.php");
+    }
+    ?>
+  </main>
+
+  <?php include 'includes/footer.php'; ?>
+
+</body>
+</html>
+
+
 <div id="chat-container">
   <button id="chat-toggle">💬</button>
 

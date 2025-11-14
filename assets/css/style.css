@@ -1,7 +1,31 @@
+/* ================================
+   FONT GLOBAL
+================================ */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1; /* Bagian utama isi halaman */
+}
+
+
 body {
   font-family: 'Poppins', sans-serif;
 }
 
+/* ================================
+   HERO SECTION
+   (Bagian header besar dengan gambar latar pertanian)
+================================ */
 .hero {
   background: url('../img/pertanian.jpg') no-repeat center center/cover;
   color: #fff;
@@ -13,19 +37,21 @@ body {
   position: relative;
 }
 
-
+/* Overlay gelap agar teks lebih mudah dibaca */
 .hero::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(0, 100, 0, 0.4);
+  background: rgba(0, 80, 0, 0.45);
 }
 
+/* Agar teks di atas layer overlay */
 .hero .container {
   position: relative;
   z-index: 2;
 }
 
+/* Judul dan deskripsi hero */
 .hero h1 {
   font-size: 3rem;
   font-weight: bold;
@@ -37,43 +63,9 @@ body {
   text-shadow: 1px 1px 3px rgba(0,0,0,0.4);
 }
 
-body {
-  font-family: 'Poppins', sans-serif;
-}
-
-.hero {
-  background: url('../img/pertanian.jpg') no-repeat center center/cover;
-  color: #fff;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  position: relative;
-}
-
-.hero::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 80, 0, 0.45);
-}
-
-.hero .container {
-  position: relative;
-  z-index: 2;
-}
-
-.fade-in {
-  opacity: 1 !important;
-  transform: translateY(0) !important;
-  transition: none !important;
-}
-.fade-in.appear {
-  opacity: 1;
-  transform: translateY(0);
-}
-
+/* ================================
+   ANIMASI FADE-IN (Efek muncul halus)
+================================ */
 .fade-in {
   animation: fadeInUp 1s ease-in-out;
 }
@@ -89,6 +81,9 @@ body {
   }
 }
 
+/* ================================
+   GALERI (Efek hover gambar)
+================================ */
 .galeri-img {
   transition: transform 0.4s ease, box-shadow 0.3s ease;
 }
@@ -97,7 +92,18 @@ body {
   transform: scale(1.05);
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 }
-/* Chat Assistant */
+
+/* Ukuran gambar carousel galeri */
+.galeri-slide-img {
+  max-height: 350px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+/* ================================
+   CHAT ASSISTANT
+   (Tombol & kotak chat mengambang di kanan bawah)
+================================ */
 #chat-container {
   position: fixed;
   bottom: 20px;
@@ -105,6 +111,7 @@ body {
   z-index: 9999;
 }
 
+/* Tombol lingkaran buka chat */
 #chat-toggle {
   background-color: #198754;
   color: white;
@@ -117,7 +124,9 @@ body {
   box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
 
+/* Kotak utama chat */
 #chat-box {
+  display: flex;
   flex-direction: column;
   width: 320px;
   height: 400px;
@@ -128,6 +137,7 @@ body {
   overflow: hidden;
 }
 
+/* Header chat */
 #chat-header {
   background-color: #198754;
   color: #fff;
@@ -138,6 +148,7 @@ body {
   font-weight: bold;
 }
 
+/* Isi chat */
 #chat-body {
   flex: 1;
   padding: 10px;
@@ -145,11 +156,13 @@ body {
   font-size: 14px;
 }
 
+/* Input area */
 #chat-input-area {
   display: flex;
   border-top: 1px solid #ddd;
 }
 
+/* Kolom input teks */
 #chat-input {
   flex: 1;
   border: none;
@@ -157,6 +170,7 @@ body {
   outline: none;
 }
 
+/* Tombol kirim */
 #chat-send {
   background-color: #198754;
   color: #fff;
@@ -165,9 +179,24 @@ body {
   cursor: pointer;
 }
 
+/* Tombol hapus chat */
 #clear-chat {
   background-color: transparent;
   color: #fff;
   border: none;
   cursor: pointer;
+}
+
+.kontak-wrapper {
+  min-height: 70vh; /* mendorong footer ke bawah */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.kontak-content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }

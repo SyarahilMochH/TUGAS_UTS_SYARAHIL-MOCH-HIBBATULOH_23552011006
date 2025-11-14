@@ -8,6 +8,12 @@
       ['file' => $basePath . 'galeri1.png', 'judul' => 'Kegiatan 1'],
       ['file' => $basePath . 'galeri2.png', 'judul' => 'Kegiatan 2'],
       ['file' => $basePath . 'galeri3.png', 'judul' => 'Kegiatan 3'],
+      ['file' => $basePath . 'galeri4.png', 'judul' => 'Kegiatan 4'],
+      ['file' => $basePath . 'galeri5.png', 'judul' => 'Kegiatan 5'],
+      ['file' => $basePath . 'galeri6.png', 'judul' => 'Kegiatan 6'],
+      ['file' => $basePath . 'galeri7.png', 'judul' => 'Kegiatan 7'],
+      ['file' => $basePath . 'galeri8.png', 'judul' => 'Kegiatan 8'],
+      ['file' => $basePath . 'galeri9.png', 'judul' => 'Kegiatan 9'],
     ];
 
     foreach ($galeri as $i => $g) {
