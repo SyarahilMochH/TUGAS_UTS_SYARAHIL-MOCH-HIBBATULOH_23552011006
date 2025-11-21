@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-success sticky-top shadow-sm">
-  <div class="container">
+  <div class="container-fluid px-3">
     <a class="navbar-brand fw-bold" href="/TUGAS_UTS_SYARAHIL%20MOCH%20HIBBATULOH_23552011006/index.php?page=home">
       <img src="/TUGAS_UTS_SYARAHIL%20MOCH%20HIBBATULOH_23552011006/assets/img/logo.png" alt="Logo" width="40" height="40" class="me-2">
       DISTANHORTI PROVINSI JAWA BARAT 

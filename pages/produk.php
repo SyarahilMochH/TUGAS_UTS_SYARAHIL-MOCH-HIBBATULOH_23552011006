@@ -7,6 +7,10 @@
       ['file' => $basePath . 'padi.png', 'judul' => 'Beras Premium', 'deskripsi' => 'Beras hasil panen petani lokal Jawa Barat.'],
       ['file' => $basePath . 'cabai.png', 'judul' => 'Cabai Merah', 'deskripsi' => 'Cabai segar hasil panen organik.'],
       ['file' => $basePath . 'tomat.png', 'judul' => 'Tomat Segar', 'deskripsi' => 'Tomat berkualitas tinggi dari lahan subur.'],
+      ['file' => $basePath . 'jagung.png', 'judul' => 'Jagung Manis', 'deskripsi' => 'Jagung manis segar untuk berbagai olahan.'],
+      ['file' => $basePath . 'bawang putih.jpg', 'judul' => 'Bawang Putih', 'deskripsi' => 'Bawang putih segar dengan aroma khas.'],
+      ['file' => $basePath . 'bawang merah.jpg', 'judul' => 'Bawang Merah', 'deskripsi' => 'Bawang mer  ah berkualitas untuk masakan Anda.'],
+      
     ];
 
     foreach ($produk as $p) {

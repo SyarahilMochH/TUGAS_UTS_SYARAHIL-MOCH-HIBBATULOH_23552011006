@@ -3,7 +3,6 @@
     <h2 class="text-success fw-bold mb-4 text-center">Berita Terbaru</h2>
     <div class="row g-4">
       <?php
-      // Data berita (bisa nanti diganti database)
       $berita = [
         [
           'id' => 1,
@@ -23,22 +22,25 @@
           'id' => 3,
           'judul' => 'Peningkatan Kualitas SDM Petani Muda',
           'tanggal' => '2025-09-10',
-          'gambar' => 'assets/img/tomat.png',
+          'gambar' => 'assets/img/petani.png',
           'isi' => 'Melalui pelatihan dan kolaborasi dengan perguruan tinggi, Jawa Barat fokus mencetak generasi muda yang berdaya saing dalam bidang pertanian berkelanjutan.'
         ]
       ];
 
       // Loop menampilkan berita
-      foreach ($berita as $b) :
+ foreach ($berita as $b) :
       ?>
         <div class="col-lg-4 col-md-6">
           <div class="card h-100 shadow-sm border-0">
             <img src="<?= htmlspecialchars($b['gambar']) ?>" class="card-img-top" alt="<?= htmlspecialchars($b['judul']) ?>">
-            <div class="card-body">
+            <div class="card-body d-flex flex-column">
               <h5 class="card-title fw-bold text-success"><?= htmlspecialchars($b['judul']) ?></h5>
               <small class="text-muted d-block mb-2"><?= htmlspecialchars($b['tanggal']) ?></small>
               <p class="card-text"><?= htmlspecialchars($b['isi']) ?></p>
-              <a href="pages/detail_berita.php?id=<?= $b['id'] ?>" class="btn btn-outline-success btn-sm">Baca Selengkapnya</a>
+              <a href="pages/detail_berita.php?id=<?= $b['id'] ?>" 
+                 class="btn btn-outline-success btn-sm mt-auto">
+                 Baca Selengkapnya
+              </a>
             </div>
           </div>
         </div>

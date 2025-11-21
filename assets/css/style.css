@@ -200,3 +200,19 @@ body {
   flex-direction: column;
   justify-content: center;
 }
+
+.detail-berita-img {
+    width: 100%;
+    max-width: 350px;   /* atur lebar gambar */
+    height: auto;
+    max-height: 250px;  /* atur tinggi gambar */
+    object-fit: contain;
+    display: block;
+    margin: 0 auto 20px auto; /* center + jarak bawah */
+}
+
+.card-img-top {
+    height: 180px;        /* bisa disesuaikan 150–220px */
+    object-fit: contain;  /* menjaga proporsi gambar */
+    padding: 10px;        /* memberi jarak */
+}
