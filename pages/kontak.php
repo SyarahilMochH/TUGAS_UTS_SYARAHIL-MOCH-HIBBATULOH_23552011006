@@ -1,54 +1,45 @@
 <?php
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-  $nama = htmlspecialchars($_POST['nama']);
-  $email = htmlspecialchars($_POST['email']);
-  $pesan = htmlspecialchars($_POST['pesan']);
-
-  $data = [
-    'nama' => $nama,
-    'email' => $email,
-    'pesan' => $pesan,
-    'tanggal' => date('Y-m-d H:i:s')
-  ];
-
-  $file = __DIR__ . '/../assets/data/kontak.json';
-  if (!file_exists(dirname($file))) {
-    mkdir(dirname($file), 0777, true);
-  }
-
-  $existing = file_exists($file) ? json_decode(file_get_contents($file), true) : [];
-  $existing[] = $data;
-  file_put_contents($file, json_encode($existing, JSON_PRETTY_PRINT));
-
-  $success = "Pesan Anda berhasil dikirim. Terima kasih, {$nama}!";
-}
+require_once __DIR__ . '/../includes/koneksi.php';
 ?>
 
-<!-- ✅ Tambahan wrapper agar footer tetap di bawah -->
-<div class="container d-flex flex-column justify-content-center flex-grow-1 py-5 fade-in">
-  <div class="kontak-content">
-    <h2 class="text-success fw-bold mb-4 text-center">Hubungi Kami</h2>
+<div class="container py-5">
+    <h2 class="text-center text-success fw-bold mb-4">Kontak Kami</h2>
 
-    <?php if (!empty($success)): ?>
-      <div class="alert alert-success"><?= $success ?></div>
-    <?php endif; ?>
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
 
-    <form action="" method="POST" class="row g-3">
-      <div class="col-md-6">
-        <label class="form-label fw-semibold">Nama</label>
-        <input type="text" name="nama" class="form-control" required>
-      </div>
-      <div class="col-md-6">
-        <label class="form-label fw-semibold">Email</label>
-        <input type="email" name="email" class="form-control" required>
-      </div>
-      <div class="col-12">
-        <label class="form-label fw-semibold">Pesan</label>
-        <textarea name="pesan" class="form-control" rows="4" required></textarea>
-      </div>
-      <div class="col-12 text-center">
-        <button type="submit" class="btn btn-success px-4">Kirim Pesan</button>
-      </div>
-    </form>
-  </div>
+            <?php if (isset($_GET['success'])): ?>
+                <div class="alert alert-success">Pesan berhasil dikirim!</div>
+            <?php endif; ?>
+
+            <div class="card shadow border-0 p-4">
+                <form action="pages/process_kontak.php" method="POST">
+
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Nama</label>
+                        <input type="text" name="name" class="form-control" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Email</label>
+                        <input type="email" name="email" class="form-control" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Subjek</label>
+                        <input type="text" name="subject" class="form-control" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Pesan</label>
+                        <textarea name="message" rows="5" class="form-control" required></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-success w-100">Kirim Pesan</button>
+
+                </form>
+            </div>
+
+        </div>
+    </div>
 </div>

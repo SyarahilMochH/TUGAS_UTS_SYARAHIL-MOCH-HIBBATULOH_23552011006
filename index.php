@@ -1,29 +1,31 @@
 <!DOCTYPE html>
 <html lang="id">
-<?php include 'includes/header.php'; ?>
+<?php include __DIR__ . '/includes/header.php'; ?>
+
 <body class="d-flex flex-column min-vh-100">
 
-  <?php include 'includes/navbar.php'; ?>
+  <?php include __DIR__ . '/includes/navbar.php'; ?>
 
   <main class="flex-fill">
     <?php
-    $page = isset($_GET['page']) ? $_GET['page'] : 'home';
-    $page_path = "pages/{$page}.php";
+    // amankan nama page (hanya huruf, angka, underscore)
+    $page = isset($_GET['page']) ? preg_replace('/[^a-zA-Z0-9_]/', '', $_GET['page']) : 'home';
+    $page_path = __DIR__ . "/pages/{$page}.php";
 
     if (file_exists($page_path)) {
-      include($page_path);
+      include $page_path;
     } else {
-      include("pages/home.php");
+      include __DIR__ . "/pages/home.php";
     }
     ?>
   </main>
 
-  <?php include 'includes/footer.php'; ?>
+  <?php include __DIR__ . '/includes/footer.php'; ?>
 
 </body>
 </html>
 
-
+<!-- Chat Assistant -->
 <div id="chat-container">
   <button id="chat-toggle">💬</button>
 
@@ -43,4 +45,3 @@
 </div>
 
 <script src="assets/js/chat.js"></script>
-

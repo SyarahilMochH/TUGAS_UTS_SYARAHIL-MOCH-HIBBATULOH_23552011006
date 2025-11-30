@@ -7,56 +7,46 @@ document.addEventListener("DOMContentLoaded", function () {
   const clearButton = document.getElementById("clear-chat");
 
   let chatData = {};
-  let waitingAnswer = null; // Menyimpan pertanyaan yang belum ada jawaban
+  let waitingAnswer = null;
 
-
-  fetch("assets/data/chat.json")
+  fetch("api/chat_get.php")
     .then((res) => res.json())
-    .then((data) => (chatData = data))
-    .catch(() => console.error("Gagal memuat chat.json"));
-
+    .then((data) => { chatData = data; })
+    .catch(() => console.error("Gagal memuat chat data"));
 
   toggleButton.addEventListener("click", () => {
-    chatBox.style.display =
-      chatBox.style.display === "none" || chatBox.style.display === ""
-        ? "flex"
-        : "none";
-    toggleButton.textContent = chatBox.style.display === "flex" ? "✖" : "💬";
+    if (chatBox.style.display === "" || chatBox.style.display === "none") {
+      chatBox.style.display = "flex";
+      toggleButton.textContent = "✖";
+    } else {
+      chatBox.style.display = "none";
+      toggleButton.textContent = "💬";
+    }
   });
 
   sendButton.addEventListener("click", sendMessage);
-  chatInput.addEventListener("keypress", (e) => {
-    if (e.key === "Enter") sendMessage();
-  });
+  chatInput.addEventListener("keypress", (e) => { if (e.key === "Enter") sendMessage(); });
 
   function sendMessage() {
     const message = chatInput.value.trim();
-    if (message === "") return;
-
+    if (!message) return;
     appendMessage("Kamu", message);
     chatInput.value = "";
 
-    // Jika sistem sedang menunggu jawaban user untuk disimpan
     if (waitingAnswer) {
+      // user memberikan jawaban untuk pertanyaan yang belum ada jawaban
       saveQA(waitingAnswer, message);
       waitingAnswer = null;
       return;
     }
 
-    // Normal chat flow
     const key = message.toLowerCase();
     const reply = chatData[key];
-
     if (reply) {
-      setTimeout(() => appendMessage("Asisten", reply), 400);
+      setTimeout(()=> appendMessage("Asisten", reply), 300);
     } else {
-      waitingAnswer = message; // Simpan pertanyaan baru
-      setTimeout(() => {
-        appendMessage(
-          "Asisten",
-          "Maaf, saya belum punya jawabannya. Silakan tuliskan jawabannya untuk saya simpan 🌱."
-        );
-      }, 400);
+      waitingAnswer = message;
+      setTimeout(()=> appendMessage("Asisten", "Maaf, saya belum punya jawabannya. Silakan ketik jawaban untuk saya simpan."), 300);
     }
   }
 
@@ -69,22 +59,19 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function saveQA(question, answer) {
-    fetch("save.php", {
+    fetch("api/chat_save.php", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ question, answer }),
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({question, answer})
     })
-      .then((res) => res.text())
-      .then((res) => {
-        appendMessage("Asisten", res);
-        chatData[question.toLowerCase()] = answer;
-      })
-      .catch(() => {
-        appendMessage("Asisten", "Gagal menyimpan jawaban.");
-      });
+    .then(res => res.text())
+    .then(msg => {
+      appendMessage("Asisten", msg);
+      // update cache lokal
+      chatData[question.toLowerCase()] = answer;
+    })
+    .catch(() => appendMessage("Asisten", "Gagal menyimpan jawaban."));
   }
 
-  clearButton.addEventListener("click", () => {
-    chatBody.innerHTML = "";
-  });
+  clearButton.addEventListener("click", () => { chatBody.innerHTML = ""; });
 });
